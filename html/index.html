@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>Calculator</title>
+    <style>
+      h1 {
+        font-family: sans-serif;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Calculator</h1>
+    <div class="from">
+      <label for="number1">First number:</label>
+      <input type="text" id="number1">
+      <label for="number2">Second number:</label>
+      <input type="text" id="number2">
+      <button id="add">Add</button>
+      <button id="subtract">Subtract</button>
+      <button id="multiply">Multiply</button>
+      <button id="divide">Divide</button>
+    </div>
+    <p id="result">The result is</p>
+  </body>
+  <script>
+    var addButton = document.getElementById("add");
+    var subtractButton = document.getElementById("subtract");
+    var multiplyButton = document.getElementById("multiply");
+    var divideButton = document.getElementById("divide");
+    var result = document.getElementById("result");
+    
+    function calculate(operation) {
+      var number1 = parseFloat(document.getElementById("number1").value);
+      var number2 = parseFloat(document.getElementById("number2").value);
+      var value;
+      
+      if (isNaN(number1) || isNaN(number2)) {
+        result.innerHTML = "Invalid input. Please enter valid numbers.";
+        return;
+      }
+      
+      switch (operation) {
+        case "add":
+          value = number1 + number2;
+          result.innerHTML = "The result of addition is " + value;
+          break;
+        case "subtract":
+          value = number1 - number2;
+          result.innerHTML = "The result of subtraction is " + value;
+          break;
+        case "multiply":
+          value = number1 * number2;
+          result.innerHTML = "The result of multiplication is " + value;
+          break;
+        case "divide":
+          if (number2 === 0) {
+            result.innerHTML = "Cannot divide by zero.";
+          } else {
+            value = number1 / number2;
+            result.innerHTML = "The result of division is " + value;
+          }
+          break;
+        default:
+          result.innerHTML = "Invalid operation.";
+          break;
+      }
+    }
+    
+    addButton.addEventListener("click", function() {
+      calculate("add");
+    });
+    
+    subtractButton.addEventListener("click", function() {
+      calculate("subtract");
+    });
+    
+    multiplyButton.addEventListener("click", function() {
+      calculate("multiply");
+    });
+    
+    divideButton.addEventListener("click", function() {
+      calculate("divide");
+    });
+  </script>
+  
+</html>
